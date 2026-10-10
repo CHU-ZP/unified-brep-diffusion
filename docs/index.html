@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Unified B-Rep Diffusion jointly generates geometry and topology with entity-level tokens, soft topology feedback, and consistent shared boundaries.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Unified B-Rep Diffusion">
+    <meta property="og:description" content="Joint generation of geometry and topology for structured 3D shapes.">
+    <meta property="og:image" content="assets/reconstruction-poster.jpg">
+    <title>Unified B-Rep Diffusion</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#top" aria-label="Unified B-Rep Diffusion home">
+          <svg width="25" height="25" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M5 9L16 4L27 10L26 24L15 29L5 23V9ZM5 9L15 15L27 10M15 15V29M16 4L15 15M5 23L15 15L26 24" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M15 15V29" stroke="#497889" stroke-width="2"/>
+          </svg>
+          <span>Unified B-Rep</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#demo">Demo</a>
+          <a href="#method">Method</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section-width" id="demo" aria-labelledby="project-title">
+        <p class="eyebrow">Structured 3D generation</p>
+        <h1 id="project-title">Unified B-Rep <span>Diffusion</span></h1>
+        <p class="hero-description">Joint generation of geometry and topology for structured 3D shapes.</p>
+
+        <figure class="demo">
+          <div class="demo-frame">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/reconstruction-poster.jpg">
+              <img src="assets/reconstruction.gif" width="1280" height="720" fetchpriority="high" alt="Animated reconstruction of eight CAD geometries, progressively recovering the final 3D shapes.">
+            </picture>
+          </div>
+          <div class="demo-bottom">
+            <figcaption>Reconstruction across eight CAD geometries.</figcaption>
+          </div>
+        </figure>
+
+        <div class="results" aria-label="Model highlights">
+          <div><p class="result-value">1B</p><p class="result-label">Model parameters</p></div>
+          <div><p class="result-value">+6 <small>pp</small></p><p class="result-label">Valid B-Rep rate</p></div>
+          <div><p class="result-value">−8.5<small>%</small></p><p class="result-label">MMD–CD</p></div>
+        </div>
+        <p class="results-note">Metric improvements relative to a hierarchical cascade baseline.</p>
+      </section>
+
+      <section class="method section-width" id="method" aria-labelledby="method-title">
+        <div class="section-intro">
+          <p class="eyebrow">The method</p>
+          <h2 id="method-title">Geometry and topology, jointly modeled.</h2>
+          <p>We represent vertices, edges and faces as entity tokens in a shared Diffusion Transformer. Geometry and connectivity evolve together, with soft topology guiding attention throughout denoising.</p>
+        </div>
+        <figure class="overview-figure">
+          <a class="figure-link" href="assets/figures/01_overview.svg" target="_blank" rel="noopener" data-figure data-title="Unified B-Rep generation — method overview" aria-label="Enlarge the method overview diagram">
+            <img src="assets/figures/01_overview.svg" width="1008" height="504" loading="lazy" decoding="async" alt="Method overview: hybrid representation, entity tokens, joint geometry–topology diffusion, and constrained reconstruction. Topological relations and known-field masks enter through separate channels.">
+            <span class="expand-label">Expand diagram <span aria-hidden="true">↗</span></span>
+          </a>
+        </figure>
+
+        <article class="method-step" aria-labelledby="representation-title">
+          <div class="step-copy">
+            <p class="step-number">01 / Representation</p>
+            <h3 id="representation-title">Hybrid geometry.<br> One token per entity.</h3>
+            <p>Analytic curves and surfaces retain native parameters. Curve and surface VAEs encode free geometry into compact latents.</p>
+            <p>Role-specific adapters map vertices, edges and faces to a common token space. Topology remains a separate relation channel.</p>
+          </div>
+          <figure>
+            <a class="figure-link" href="assets/figures/02_representation_tokens.svg" target="_blank" rel="noopener" data-figure data-title="Hybrid geometry to entity tokens" aria-label="Enlarge the hybrid geometry and tokenization diagram">
+              <img src="assets/figures/02_representation_tokens.svg" width="1008" height="504" loading="lazy" decoding="async" alt="Vertex coordinates and fixed edge and face layouts containing placement, analytic parameters and VAE latents pass through role adapters to become one token per entity. Noisy attributes, time and mask embeddings are added.">
+              <span class="expand-label">Expand diagram <span aria-hidden="true">↗</span></span>
+            </a>
+          </figure>
+        </article>
+
+        <article class="method-step" aria-labelledby="diffusion-title">
+          <div class="step-copy">
+            <p class="step-number">02 / Joint diffusion</p>
+            <h3 id="diffusion-title">Soft topology guides<br> geometric refinement.</h3>
+            <p>The Transformer predicts geometry and connectivity in parallel. Soft edge–vertex and coedge–face relations feed back as attention bias.</p>
+            <p>A topology-aware noise schedule moves from coarse structure to stable relations and fine geometry. Unified masks specify the known conditions.</p>
+          </div>
+          <figure>
+            <a class="figure-link" href="assets/figures/03_joint_diffusion.svg" target="_blank" rel="noopener" data-figure data-title="Geometry–topology joint diffusion" aria-label="Enlarge the joint diffusion diagram">
+              <img src="assets/figures/03_joint_diffusion.svg" width="1008" height="504" loading="lazy" decoding="async" alt="Noisy geometry, attributes and relations enter a shared Transformer. Predicted soft topology updates attention bias between blocks. Parallel heads update unknown fields while known conditions stay fixed. The noise schedule shifts from joint recovery toward geometry refinement.">
+              <span class="expand-label">Expand diagram <span aria-hidden="true">↗</span></span>
+            </a>
+          </figure>
+        </article>
+
+        <div class="conditioning-strip" aria-label="Generation tasks supported by unified mask conditioning">
+          <span class="conditioning-label">One conditioning interface</span>
+          <span>Unconditional generation</span>
+          <span>Topology restoration</span>
+          <span>Completion</span>
+          <span>Local infilling</span>
+        </div>
+
+        <article class="method-step final-step" aria-labelledby="reconstruction-title">
+          <div class="step-copy">
+            <p class="step-number">03 / Reconstruction</p>
+            <h3 id="reconstruction-title">Consistent topology.<br> Shared boundaries.</h3>
+            <p>Geometry is decoded from native parameters or VAE latents. A MILP projects predicted relations under loop, orientation, manifold and connectivity constraints.</p>
+            <p>Shared endpoints and one polyline per edge give neighboring faces the same boundary indices, connecting the reconstructed mesh.</p>
+          </div>
+          <figure>
+            <a class="figure-link" href="assets/figures/04_constrained_reconstruction.svg" target="_blank" rel="noopener" data-figure data-title="Constrained reconstruction with shared boundaries" aria-label="Enlarge the constrained reconstruction diagram">
+              <img src="assets/figures/04_constrained_reconstruction.svg" width="1008" height="504" loading="lazy" decoding="async" alt="Geometry decoding and MILP topology projection feed shared-boundary mesh assembly. Shared endpoints, one polyline per edge, and reused boundary indices connect adjacent faces.">
+              <span class="expand-label">Expand diagram <span aria-hidden="true">↗</span></span>
+            </a>
+          </figure>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer section-width">
+      <span>Unified B-Rep Diffusion</span>
+      <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <dialog class="figure-dialog" id="figure-dialog" aria-labelledby="figure-dialog-title">
+      <div class="dialog-toolbar">
+        <h2 id="figure-dialog-title">Method diagram</h2>
+        <div>
+          <button type="button" id="zoom-figure" aria-pressed="false">Zoom in</button>
+          <button type="button" id="close-figure" aria-label="Close enlarged diagram">Close <span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+      <div class="figure-dialog-scroll"><img id="expanded-figure" alt=""></div>
+    </dialog>
+  </body>
+</html>

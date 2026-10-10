@@ -1,0 +1,43 @@
+Unified B-Rep Diffusion — GitHub Pages project homepage
+
+The homepage is a standalone static website. It requires no package installation,
+build step, external font service, or application server.
+
+Content
+  index.html             Page structure and English project copy
+  assets/site.css        Responsive layout
+  assets/site.js         Diagram enlargement
+  assets/reconstruction.gif
+                         Animation derived from the supplied reconstruction demo
+  assets/figures/        Four editable method diagrams
+
+Local preview
+  From the repository root:
+    python3 -m http.server 8000 --directory docs
+  Open http://localhost:8000/
+  Opening docs/index.html directly in a browser also works.
+
+The reconstruction GIF plays once and holds its final frame. It has no replay,
+playback or fullscreen controls. Reduced-motion preferences show a static
+poster. Method diagrams can be enlarged separately.
+
+GitHub Pages — simplest setup
+  1. Create a GitHub repository and upload the docs/ directory.
+  2. Open repository Settings → Pages.
+  3. Choose "Deploy from a branch", your default branch, and the /docs folder.
+  4. Save. GitHub provides the final *.github.io project URL.
+
+GitHub Pages — automatic workflow
+  Alternatively, upload .github/workflows/pages.yml alongside docs/ and choose
+  "GitHub Actions" in Settings → Pages. Pushes affecting docs/ on main or master
+  will deploy the page. The workflow can also be started manually.
+
+All asset links are relative, so the same files support both a project path
+such as /repository-name/ and a username.github.io root site.
+
+Official deployment reference:
+  https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+
+The displayed headline metrics come from the supplied project description:
+  1B parameters; +6 percentage points in Valid B-Rep Rate and −8.5% in MMD-CD
+  relative to the hierarchical cascade baseline.
