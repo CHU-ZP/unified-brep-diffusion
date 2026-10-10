@@ -948,7 +948,7 @@ L 859.0032 171.4752
     <text style="font-size: 10.8px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #26343b" x="658.08" y="378.980156" transform="rotate(-0 658.08 378.980156)">Known fields + masks</text>
    </g>
    <g id="text_35">
-    <text style="font-size: 11.5px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #497889" x="863.64" y="377.373828" transform="rotate(-0 863.64 377.373828)">Approximate 3D mesh</text>
+    <text style="font-size: 11.5px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #497889" x="863.64" y="377.373828" transform="rotate(-0 863.64 377.373828)">Reconstructed 3D shape</text>
    </g>
    <g id="text_36">
     <text style="font-weight: 700; font-size: 11.5px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: start; fill: #26343b" x="36" y="433.508672" transform="rotate(-0 36 433.508672)">Shared conditioning interface</text>

@@ -27,6 +27,10 @@ GitHub Pages — simplest setup
   3. Choose "Deploy from a branch", your default branch, and the /docs folder.
   4. Save. GitHub provides the final *.github.io project URL.
 
+  If Pages publishes the repository root instead of /docs, upload the root
+  index.html as well. It redirects to docs/ and preserves query parameters
+  and section anchors. Without it, GitHub renders README.md as the homepage.
+
 GitHub Pages — automatic workflow
   Alternatively, upload .github/workflows/pages.yml alongside docs/ and choose
   "GitHub Actions" in Settings → Pages. Pushes affecting docs/ on main or master

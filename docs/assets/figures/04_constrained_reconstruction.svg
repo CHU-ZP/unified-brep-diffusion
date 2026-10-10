@@ -416,7 +416,7 @@ L 849.0528 171.8208
     <text style="font-size: 10.4px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #497889" x="864" y="301.489375" transform="rotate(-0 864 301.489375)">Identical boundary indices</text>
    </g>
    <g id="text_39">
-    <text style="font-weight: 700; font-size: 12.2px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #26343b" x="750.6" y="396.968156" transform="rotate(-0 750.6 396.968156)">Output: approximate indexed triangle mesh</text>
+    <text style="font-weight: 700; font-size: 12.2px; font-family: 'Liberation Sans', Arial, sans-serif; text-anchor: middle; fill: #26343b" x="750.6" y="396.968156" transform="rotate(-0 750.6 396.968156)">Output: reconstructed 3D shape</text>
    </g>
   </g>
  </g>
