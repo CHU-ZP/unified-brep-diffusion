@@ -7,8 +7,10 @@ Content
   index.html             Page structure and English project copy
   assets/site.css        Responsive layout
   assets/site.js         Diagram enlargement
-  assets/reconstruction.gif
-                         Animation derived from the supplied reconstruction demo
+  assets/overview_entity_ddpm_reverse_9-16s.gif
+                         Supplied reverse diffusion animation (7 seconds, looping)
+  assets/overview_entity_ddpm_reverse_9-16s-poster.jpg
+                         Final animation frame used as the static poster
   assets/figures/        Four editable method diagrams
 
 Local preview
@@ -17,7 +19,7 @@ Local preview
   Open http://localhost:8000/
   Opening docs/index.html directly in a browser also works.
 
-The reconstruction GIF plays once and holds its final frame. It has no replay,
+The reverse diffusion GIF loops continuously. It has no replay,
 playback or fullscreen controls. Reduced-motion preferences show a static
 poster. Method diagrams can be enlarged separately.
 
